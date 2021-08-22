@@ -1,0 +1,13 @@
+.home {
+  &-carousel {
+    height: 0px;
+    padding-top: 48%;
+    position: relative;
+    &__inner {
+      position: absolute !important;
+      top: 0;
+      left: 0;
+      height: 100% !important;
+    }
+  }
+}
