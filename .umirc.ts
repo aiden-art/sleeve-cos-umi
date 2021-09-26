@@ -41,6 +41,18 @@ export default defineConfig({
           path: '/my',
           component: '@/pages/my',
         },
+        {
+          path: '/learning',
+          component: '@/pages/learning',
+        },
+        {
+          path: '/use-state-page',
+          component: '@/pages/useStatePage',
+        },
+        {
+          path: '/use-effect-page',
+          component: '@/pages/useEffectPage',
+        },
       ],
     },
   ],

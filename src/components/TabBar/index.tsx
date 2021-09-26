@@ -39,6 +39,13 @@ const menuList = [
     selectedIcon:
       'https://vowui.oss-cn-shanghai.aliyuncs.com/fx-umi/tabbar/my.png',
   },
+  {
+    title: '学习',
+    link: '/learning',
+    icon: 'https://vowui.oss-cn-shanghai.aliyuncs.com/fx-umi/tabbar/my%40dis.png',
+    selectedIcon:
+      'https://vowui.oss-cn-shanghai.aliyuncs.com/fx-umi/tabbar/my.png',
+  },
 ];
 
 const IconC: React.FC<IconCPropsType> = (props) => {
