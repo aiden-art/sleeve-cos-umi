@@ -115,7 +115,7 @@ import { Button } from 'antd-mobile';
 //-------------------惰性初始化state start-------------//
 
 // initialState参数只会在组件的初始化渲染中起作用，后续渲染时会忽略
-//如果初始state需要通过复杂计算得到，则可以传入一个函数，在函数中计算并返回初始的state，此函数之灾初始渲染时调用
+//如果初始state需要通过复杂计算得到，则可以传入一个函数，在函数中计算并返回初始的state，此函数只在初始渲染时调用
 
 type UseStatePageProps = {
   number: number;

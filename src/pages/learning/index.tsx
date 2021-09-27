@@ -24,11 +24,24 @@ const learning: React.FC = () => {
         >
           useEffect&useLayoutEffect
         </Item>
-        <Item arrow="horizontal" onClick={() => {}}>
-          useMemo
+        <Item
+          arrow="horizontal"
+          onClick={() => {
+            history.push('/use-ref-page');
+          }}
+        >
+          useRef&&forwardRef
+        </Item>
+        <Item
+          arrow="horizontal"
+          onClick={() => {
+            history.push('/react-slot');
+          }}
+        >
+          react slot
         </Item>
         <Item arrow="horizontal" onClick={() => {}}>
-          useCallback
+          useMemo
         </Item>
       </List>
     </div>

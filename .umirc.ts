@@ -53,6 +53,14 @@ export default defineConfig({
           path: '/use-effect-page',
           component: '@/pages/useEffectPage',
         },
+        {
+          path: '/use-ref-page',
+          component: '@/pages/useRefPage',
+        },
+        {
+          path: '/react-slot',
+          component: '@/pages/reactSlotPage',
+        },
       ],
     },
   ],
