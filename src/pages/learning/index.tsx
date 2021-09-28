@@ -48,6 +48,14 @@ const learning: React.FC = () => {
         >
           useMemo
         </Item>
+        <Item
+          arrow="horizontal"
+          onClick={() => {
+            history.push('/use-reducer-page');
+          }}
+        >
+          useReducer
+        </Item>
       </List>
     </div>
   );

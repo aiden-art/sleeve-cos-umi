@@ -65,6 +65,10 @@ export default defineConfig({
           path: '/use-memo-page',
           component: '@/pages/learning/useMemoPage',
         },
+        {
+          path: '/use-reducer-page',
+          component: '@/pages/learning/useReducerPage',
+        },
       ],
     },
   ],
