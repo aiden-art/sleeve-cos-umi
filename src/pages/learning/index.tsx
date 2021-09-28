@@ -56,6 +56,14 @@ const learning: React.FC = () => {
         >
           useReducer
         </Item>
+        <Item
+          arrow="horizontal"
+          onClick={() => {
+            history.push('/use-context-page');
+          }}
+        >
+          useContext
+        </Item>
       </List>
     </div>
   );

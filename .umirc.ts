@@ -69,6 +69,10 @@ export default defineConfig({
           path: '/use-reducer-page',
           component: '@/pages/learning/useReducerPage',
         },
+        {
+          path: '/use-context-page',
+          component: '@/pages/learning/useContextPage',
+        },
       ],
     },
   ],
