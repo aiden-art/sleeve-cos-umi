@@ -61,6 +61,10 @@ export default defineConfig({
           path: '/react-slot',
           component: '@/pages/reactSlotPage',
         },
+        {
+          path: '/use-memo-page',
+          component: '@/pages/useMemoPage',
+        },
       ],
     },
   ],

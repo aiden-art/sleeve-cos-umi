@@ -40,7 +40,12 @@ const learning: React.FC = () => {
         >
           react slot
         </Item>
-        <Item arrow="horizontal" onClick={() => {}}>
+        <Item
+          arrow="horizontal"
+          onClick={() => {
+            history.push('/use-memo-page');
+          }}
+        >
           useMemo
         </Item>
       </List>
