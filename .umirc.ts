@@ -47,23 +47,23 @@ export default defineConfig({
         },
         {
           path: '/use-state-page',
-          component: '@/pages/useStatePage',
+          component: '@/pages/learning/useStatePage',
         },
         {
           path: '/use-effect-page',
-          component: '@/pages/useEffectPage',
+          component: '@/pages/learning/useEffectPage',
         },
         {
           path: '/use-ref-page',
-          component: '@/pages/useRefPage',
+          component: '@/pages/learning/useRefPage',
         },
         {
           path: '/react-slot',
-          component: '@/pages/reactSlotPage',
+          component: '@/pages/learning/reactSlotPage',
         },
         {
           path: '/use-memo-page',
-          component: '@/pages/useMemoPage',
+          component: '@/pages/learning/useMemoPage',
         },
       ],
     },
