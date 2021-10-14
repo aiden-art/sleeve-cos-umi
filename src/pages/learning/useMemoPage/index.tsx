@@ -63,6 +63,8 @@ const NameDisplay: React.FC<NameDisplayType> = React.memo(({ name }) => {
 
 //----------------------- 使用usememo end ----------------------//
 
+//----------------------- 使用useCallback start ----------------------//
+
 const UseMemoPage: React.FC = () => {
   const [length, setLength] = useState(3);
   const [name, setName] = useState('John Doe');
@@ -92,5 +94,7 @@ const UseMemoPage: React.FC = () => {
     </>
   );
 };
+
+//----------------------- 使用useCallback end ----------------------//
 
 export default UseMemoPage;
