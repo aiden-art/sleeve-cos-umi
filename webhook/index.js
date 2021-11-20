@@ -61,10 +61,13 @@ http
       );
 
       // 创建 docker 镜像
-      execSync(`docker build . -t ${data.repository.name}-image:latest `, {
-        stdio: 'inherit',
-        cwd: projectDir,
-      });
+      execSync(
+        `docker build . -t --network=host ${data.repository.name}-image:latest`,
+        {
+          stdio: 'inherit',
+          cwd: projectDir,
+        },
+      );
 
       // 销毁 docker 容器
       execSync(
