@@ -42,7 +42,7 @@ http
 
       // 拉取仓库最新代码
       execSync(
-        `git clone https://github.com/theShapeOfvoice/${data.repository.name}.git ${projectDir}`,
+        `git clone git@github.com:theShapeOfvoice/${data.repository.name}.git ${projectDir}`,
         {
           stdio: 'inherit',
         },
