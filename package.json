@@ -1,4 +1,5 @@
 {
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "start": "umi dev",
@@ -6,7 +7,10 @@
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
-    "test:coverage": "umi-test --coverage"
+    "test:coverage": "umi-test --coverage",
+    "release:major": "npx standard-version --release-as major",
+    "release:minor": "npx standard-version --release-as minor",
+    "release:patch": "npx standard-version --release-as patch"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -34,6 +38,7 @@
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.0",
     "sass-resources-loader": "^2.2.4",
+    "standard-version": "^9.3.2",
     "typescript": "^4.1.2",
     "yorkie": "^2.0.0"
   }
