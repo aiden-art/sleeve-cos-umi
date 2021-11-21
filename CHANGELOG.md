@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/theShapeOfvoice/fengxiu-cos-umi/compare/v0.0.3...v0.0.4) (2021-11-21)
+
+
+### Features
+
+* update my ([560c369](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/560c36917b5078f81e33a6fcf8ab069cbbcae528))
+
+
+### Bug Fixes
+
+* fix webhook ([9b74ab1](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/9b74ab16fb2d76794d4f0c78acfc635aa9cb9c01))
+* fix webhook ([af8237f](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/af8237fe784a99f8472207c619eba5c239a1e9cd))
+* fix webhook ([153e656](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/153e65659aaab851a79f80d2e0d7ed6326406d57))
+* fix webhook ([a39bcd6](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/a39bcd647d6bd33d3e40e07d01bbd57df322a1ae))
+* update docker file ([86bb638](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/86bb6382554c0c25544fef3caf30ba773b2706ca))
+* update docker file ([11697ef](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/11697ef73acd09705df3958458038a31e6afe729))
+* update docker file ([6e331ea](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/6e331ea858c8d183182db119d01381c6ef1a81e6))
+* update docker file ([612a7f8](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/612a7f89b4c90627e9434df0f93faf799d4e4a5b))
+* update npmrc ([4184d8d](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/4184d8dde8a57eb1e95d7f35304b711a5489e612))
+* update webhook ([214954c](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/214954c48c90689521ecbca16820683581ea4f2c))
+* update webhook ([d17d89d](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/d17d89d7e82272d6df26369943bffc35e1575617))
+* update webhook ([8c40936](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/8c409360045f99610e57840ecc68e74c9ba99269))
+* update webhook ([fa2cb99](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/fa2cb99fe190b75a19f2f812e9bbb91e0f1c1791))
+* update webhook ([2e5f6fd](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/2e5f6fdd1e1e60ccf40c5cdb8b511d022721dea3))
+
 ### [0.0.3](https://github.com/theShapeOfvoice/fengxiu-cos-umi/compare/v0.0.2...v0.0.3) (2021-11-21)
 
 
