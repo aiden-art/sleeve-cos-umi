@@ -9,3 +9,5 @@
 更新`webhook`后需要重新启动`pm2`
 
 `docker`对外暴露`80`端口
+
+`docker`构建镜像和运行容器时要注意网络问题`--net=host`
