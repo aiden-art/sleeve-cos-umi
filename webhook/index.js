@@ -62,7 +62,7 @@ http
 
       // 创建 docker 镜像
       execSync(
-        `docker build . -t --network=host ${data.repository.name}-image:latest`,
+        `docker build . --network=host -t  ${data.repository.name}-image:latest`,
         {
           stdio: 'inherit',
           cwd: projectDir,
@@ -79,7 +79,7 @@ http
 
       // 创建 docker 容器
       execSync(
-        `docker run --net=host -d -p 8888:80 --name ${data.repository.name}-container  ${data.repository.name}-image:latest`,
+        `docker run --network=host -d -p 8888:80 --name ${data.repository.name}-container  ${data.repository.name}-image:latest`,
         {
           stdio: 'inherit',
         },
