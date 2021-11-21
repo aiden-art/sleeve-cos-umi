@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/theShapeOfvoice/fengxiu-cos-umi/compare/v0.0.2...v0.0.3) (2021-11-21)
+
+
+### Features
+
+* update category ([af52e05](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/af52e0558239c9d8ca9333f8f47901fef33c6c85))
+
 ### 0.0.2 (2021-11-21)
 
 
