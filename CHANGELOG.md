@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/theShapeOfvoice/fengxiu-cos-umi/compare/v0.0.4...v0.0.5) (2021-11-22)
+
+
+### Features
+
+* addd ngix conf ([66b6da4](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/66b6da46ff04952a90bd3b8301fbf9f7d8858d75))
+
 ### [0.0.4](https://github.com/theShapeOfvoice/fengxiu-cos-umi/compare/v0.0.3...v0.0.4) (2021-11-21)
 
 
