@@ -1,7 +1,7 @@
 import React from 'react';
 import { history } from 'umi';
 import ImageWrapper from '@/components/ImageWrapper';
-import { Carousel } from 'antd-mobile';
+import { Swiper } from 'antd-mobile';
 import './index.scss';
 const carouselList = [
   {
@@ -22,6 +22,19 @@ const carouselList = [
   },
 ];
 
+const swiperItems = carouselList.map((item, index) => (
+  <Swiper.Item key={index}>
+    <ImageWrapper
+      key={item.id}
+      rate={0.48}
+      url={item.url}
+      onPress={() => {
+        history.push('/cart');
+      }}
+    ></ImageWrapper>
+  </Swiper.Item>
+));
+
 const home: React.FC = () => {
   return (
     <div className="home">
@@ -32,30 +45,19 @@ const home: React.FC = () => {
         }
       ></ImageWrapper>
       <div className="home-carousel">
-        <Carousel
+        <Swiper
           className="home-carousel__inner"
           autoplay={true}
-          infinite
-          dotStyle={{
-            background: 'rgba(0,0,0,0.4)',
-          }}
-          dotActiveStyle={{
-            background: '#157658',
+          loop
+          indicatorProps={{
+            style: {
+              '--dot-color': 'rgba(0, 0, 0, 0.4)',
+              '--active-dot-color': '#157658',
+            },
           }}
         >
-          {carouselList.map((item) => {
-            return (
-              <ImageWrapper
-                key={item.id}
-                rate={0.48}
-                url={item.url}
-                onPress={() => {
-                  history.push('/cart');
-                }}
-              ></ImageWrapper>
-            );
-          })}
-        </Carousel>
+          {swiperItems}
+        </Swiper>
       </div>
     </div>
   );

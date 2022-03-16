@@ -4,4 +4,14 @@
   right: 0px;
   bottom: 0px;
   box-shadow: 0 0 4px 0 rgba(210, 210, 210, 0.5);
+  .adm-tab-bar-item {
+    .adm-tab-bar-item-title {
+      color: #999;
+    }
+  }
+  .adm-tab-bar-item-active {
+    .adm-tab-bar-item-title {
+      color: $brand-color;
+    }
+  }
 }

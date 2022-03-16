@@ -60,18 +60,19 @@ const TabBarC: React.FC<TabBarCPropsType> = (props) => {
 
   return (
     <div className="tab-bar">
-      <TabBar tintColor="#157658" unselectedTintColor="#999">
+      <TabBar
+        onChange={(link) => {
+          handlePress(link);
+        }}
+      >
         {menuList.map((item) => {
           return (
             <TabBar.Item
               title={item.title}
               key={item.link}
-              icon={<IconC icon={item.icon}></IconC>}
-              selectedIcon={<IconC icon={item.selectedIcon}></IconC>}
-              selected={props.pathname === item.link}
-              onPress={() => {
-                handlePress(item.link);
-              }}
+              icon={(active) => (
+                <IconC icon={active ? item.selectedIcon : item.icon}></IconC>
+              )}
             ></TabBar.Item>
           );
         })}
