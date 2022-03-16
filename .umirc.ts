@@ -1,6 +1,9 @@
 import { defineConfig } from 'umi';
 
 export default defineConfig({
+  devServer: {
+    port: 8888,
+  },
   nodeModulesTransform: {
     type: 'none',
   },
@@ -12,10 +15,7 @@ export default defineConfig({
         .use('sass-resources-loader')
         .loader('sass-resources-loader')
         .options({
-          resources: [
-            './src/assets/scss/variable.scss',
-            './src/assets/scss/mixin.scss',
-          ],
+          resources: ['./src/assets/scss/variable.scss', './src/assets/scss/mixin.scss'],
         })
         .end();
     });
