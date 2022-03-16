@@ -4,6 +4,7 @@
   "scripts": {
     "start": "umi dev",
     "build": "umi build",
+    "deploy": "npx zx ./deploy/deploy.mjs",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
@@ -40,6 +41,7 @@
     "sass-resources-loader": "^2.2.4",
     "standard-version": "^9.3.2",
     "typescript": "^4.1.2",
-    "yorkie": "^2.0.0"
+    "yorkie": "^2.0.0",
+    "zx": "^6.0.1"
   }
 }
