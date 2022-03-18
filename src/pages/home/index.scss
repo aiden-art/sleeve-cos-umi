@@ -10,4 +10,8 @@
       height: 100% !important;
     }
   }
+  &-grid-category {
+    padding: 5px;
+    @include flex(row, center, center);
+  }
 }
