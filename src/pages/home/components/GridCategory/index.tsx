@@ -10,7 +10,7 @@ const GridCategory: React.FC<GridCategoryPropsType> = (props) => {
   return (
     <ul className="grid-category">
       {props.gridCategotyList.map((item) => (
-        <li className="grid-category__item">
+        <li className="grid-category__item" key={item.id}>
           <img className="grid-category__img" src={item.img} alt="" />
           <p className="grid-category__title">{item.title}</p>
         </li>

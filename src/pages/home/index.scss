@@ -1,4 +1,5 @@
 .home {
+  background-color: #f5f5f5;
   &-carousel {
     height: 0px;
     padding-top: 48%;
@@ -12,6 +13,21 @@
   }
   &-grid-category {
     padding: 5px;
+    background-color: #fff;
     @include flex(row, center, center);
+  }
+  &-weekly-theme {
+    margin-top: 10px;
+    padding: 22px 0 14px 0;
+    background-color: #fff;
+    @include flex(row, center, center);
+  }
+  &-recommend-theme {
+    margin-top: 10px;
+    &__img {
+      display: block;
+      max-width: 100%;
+      margin: 0 auto;
+    }
   }
 }

@@ -23,6 +23,6 @@ export const getBannerListApi = () => {
   return request<BaseListResponseType<BannerModel>>('/v1/banner/list');
 };
 
-export const getBannerDetail = (id: string) => {
+export const getBannerDetailApi = (id: string) => {
   return request<BaseResponseType<BannerModel>>(`/v1/banner/${id}`);
 };
