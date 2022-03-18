@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/theShapeOfvoice/fengxiu-cos-umi/compare/v0.0.6...v0.0.7) (2022-03-18)
+
+
+### Features
+
+* complete index page banner api ([82a95d2](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/82a95d2191c043996341694f4edd451d8a171fdc))
+* update umijs version ([3835772](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/3835772721003f380c8f1d648d30080eae075457))
+
+
+### Bug Fixes
+
+* add deploy command ([e5a44c6](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/e5a44c6311875dc1b7dd13023aae71f66c8c37a4))
+* add docker file ([ece7a96](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/ece7a96648a617d17d92dadd1f8810f392f9dc34))
+
 ### [0.0.6](https://github.com/theShapeOfvoice/fengxiu-cos-umi/compare/v0.0.5...v0.0.6) (2021-11-22)
 
 ### [0.0.5](https://github.com/theShapeOfvoice/fengxiu-cos-umi/compare/v0.0.4...v0.0.5) (2021-11-22)
