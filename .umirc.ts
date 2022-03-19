@@ -1,6 +1,9 @@
 import { defineConfig } from 'umi';
 
 export default defineConfig({
+  define: {
+    API_PREFIX: ' https://sleeve.api.vowui.com/api',
+  },
   devServer: {
     port: 8888,
   },
