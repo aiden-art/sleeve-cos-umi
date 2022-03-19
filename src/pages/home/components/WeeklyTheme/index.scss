@@ -39,6 +39,9 @@
     margin: 2px 0;
     @include ellipsis();
   }
+  &__price-prefix {
+    font-size: 12px;
+  }
   &__spu-price {
     font-size: 14px;
     color: $brand-color;

@@ -6,11 +6,13 @@ import GridCategory from './components/GridCategory';
 import WeeklyTheme from './components/WeeklyTheme';
 import BannerRank from './components/BannerRank';
 import RandomRecommendTheme from './components/RandomRecommendTheme';
+import PageLoading from '@/components/PageLoading';
 import { BannerItemModel, BannerModel, getBannerDetailApi } from '@/api/banner';
 import { getThemeDetailApi, ThemeModel } from '@/api/theme';
 import { getGridCategoryListApi, GridCategoryModel } from '@/api/gridCategory';
 
 const Home: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const [carouselList, setCarouselList] = useState<BannerItemModel[]>([]);
   const [gridCategoryList, setGridCategoryList] = useState<GridCategoryModel[]>([]);
   const [weeklyThemeData, setWeeklyThemeData] = useState<ThemeModel>();
@@ -20,6 +22,7 @@ const Home: React.FC = () => {
   const [randomRecommendThemeData, setRandomRecommendThemeData] = useState<ThemeModel>();
 
   useEffect(() => {
+    setLoading(true);
     // 获取首页轮播图
     const fetchCarouselList = async () => {
       const bannerName = '32';
@@ -75,6 +78,10 @@ const Home: React.FC = () => {
     fetchRankBannerData();
     fetchFashionThemeData();
     fetchRandomRecommendThemeData();
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   }, []);
 
   const WeeklyThemeRender = () => (weeklyThemeData ? <WeeklyTheme theme={weeklyThemeData} /> : <div></div>);
@@ -98,31 +105,38 @@ const Home: React.FC = () => {
   const RandomRecommendThemeRender = () => {
     return randomRecommendThemeData ? <RandomRecommendTheme theme={randomRecommendThemeData} /> : <div></div>;
   };
-  return (
-    <div className="home">
-      <ImageWrapper rate={0.346} url={'https://vowui.oss-cn-shanghai.aliyuncs.com/fx-umi/home/theme-sale.png'} />
-      {/* 轮播图 */}
-      <div className="home-carousel">
-        <BannerCarousel carouselList={carouselList} />
+  const HomePage = () => {
+    return (
+      <div className="home">
+        <ImageWrapper
+          className="home-top-banner"
+          rate={0.346}
+          url={'https://vowui.oss-cn-shanghai.aliyuncs.com/fx-umi/home/theme-sale.png'}
+        />
+        {/* 轮播图 */}
+        <div className="home-carousel">
+          <BannerCarousel carouselList={carouselList} />
+        </div>
+        {/* 宫格分类 */}
+        <div className="home-grid-category">
+          <GridCategory gridCategotyList={gridCategoryList} />
+        </div>
+        {/* 每周上新 */}
+        <div className="home-weekly-theme">
+          <WeeklyThemeRender />
+        </div>
+        {/* 风袖臻选 */}
+        <RecommendThemeRender />
+        {/* 热卖榜单 */}
+        <RankBannerRender />
+        {/* 时尚出街 */}
+        <FashionThemeRender />
+        {/* 为你推荐 */}
+        <RandomRecommendThemeRender />
       </div>
-      {/* 宫格分类 */}
-      <div className="home-grid-category">
-        <GridCategory gridCategotyList={gridCategoryList} />
-      </div>
-      {/* 每周上新 */}
-      <div className="home-weekly-theme">
-        <WeeklyThemeRender />
-      </div>
-      {/* 风袖臻选 */}
-      <RecommendThemeRender />
-      {/* 热卖榜单 */}
-      <RankBannerRender />
-      {/* 时尚出街 */}
-      <FashionThemeRender />
-      {/* 为你推荐 */}
-      <RandomRecommendThemeRender />
-    </div>
-  );
+    );
+  };
+  return loading ? <PageLoading /> : <HomePage />;
 };
 
 export default Home;

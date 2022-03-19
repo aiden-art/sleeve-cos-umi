@@ -25,7 +25,10 @@ const WeeklyTheme: React.FC<WeeklyThemePropsType> = (props) => (
               }}
             ></div>
             <p className="weekly-theme__spu-title">{spu.title}</p>
-            <p className="weekly-theme__spu-price">¥{spu.price}</p>
+            <p className="weekly-theme__spu-price">
+              <span className="weekly-theme__price-prefix">¥</span>
+              {spu.price}
+            </p>
           </li>
         ))}
     </ul>
