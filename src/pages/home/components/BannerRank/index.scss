@@ -1,0 +1,26 @@
+.banner-rank {
+  background-color: #fff;
+  margin-top: 10px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  &__title {
+    width: 92%;
+    height: 0px;
+    padding-bottom: 11.73%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+  }
+  &-wrapper {
+    margin-top: 14px;
+    @include flex(row, space-between);
+    &__left {
+      width: 46%;
+    }
+    &__right {
+      width: 53%;
+      @include flex(column, space-between);
+    }
+  }
+}
