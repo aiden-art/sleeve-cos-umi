@@ -5,6 +5,7 @@ import BannerCarousel from './components/BannerCarousel';
 import GridCategory from './components/GridCategory';
 import WeeklyTheme from './components/WeeklyTheme';
 import BannerRank from './components/BannerRank';
+import RandomRecommendTheme from './components/RandomRecommendTheme';
 import { BannerItemModel, BannerModel, getBannerDetailApi } from '@/api/banner';
 import { getThemeDetailApi, ThemeModel } from '@/api/theme';
 import { getGridCategoryListApi, GridCategoryModel } from '@/api/gridCategory';
@@ -16,6 +17,7 @@ const Home: React.FC = () => {
   const [recommendThemeData, setRecommendThemeData] = useState<ThemeModel>();
   const [rankBannerData, setRankBannerData] = useState<BannerModel>();
   const [fashionThemeData, setFashionThemeData] = useState<ThemeModel>();
+  const [randomRecommendThemeData, setRandomRecommendThemeData] = useState<ThemeModel>();
 
   useEffect(() => {
     // 获取首页轮播图
@@ -59,12 +61,20 @@ const Home: React.FC = () => {
       setFashionThemeData(result.data);
     };
 
+    //获取为你推荐数据
+    const fetchRandomRecommendThemeData = async () => {
+      const themeId = '8';
+      const result = await getThemeDetailApi(themeId);
+      setRandomRecommendThemeData(result.data);
+    };
+
     fetchCarouselList();
     fetchGridCategoryList();
     fetchWeeklyThemeData();
     fetchRecommendThemeData();
     fetchRankBannerData();
     fetchFashionThemeData();
+    fetchRandomRecommendThemeData();
   }, []);
 
   const WeeklyThemeRender = () => (weeklyThemeData ? <WeeklyTheme theme={weeklyThemeData} /> : <div></div>);
@@ -85,6 +95,9 @@ const Home: React.FC = () => {
     ) : (
       <div></div>
     );
+  const RandomRecommendThemeRender = () => {
+    return randomRecommendThemeData ? <RandomRecommendTheme theme={randomRecommendThemeData} /> : <div></div>;
+  };
   return (
     <div className="home">
       <ImageWrapper rate={0.346} url={'https://vowui.oss-cn-shanghai.aliyuncs.com/fx-umi/home/theme-sale.png'} />
@@ -106,6 +119,8 @@ const Home: React.FC = () => {
       <RankBannerRender />
       {/* 时尚出街 */}
       <FashionThemeRender />
+      {/* 为你推荐 */}
+      <RandomRecommendThemeRender />
     </div>
   );
 };
