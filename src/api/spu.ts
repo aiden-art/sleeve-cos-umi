@@ -1,3 +1,6 @@
+import request from '@/utils/request';
+import { BaseResponseType } from './apiBaseTypes';
+
 export interface SpuModel {
   id: number;
   title: string;
@@ -19,3 +22,7 @@ export interface SpuModel {
   spuDetailImgs?: string[];
   specKeys?: number[];
 }
+
+export const getSpuDetailApi = (spuId: string) => {
+  return request<BaseResponseType<SpuModel>>(`/v1/spu/${spuId}`);
+};

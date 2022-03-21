@@ -44,6 +44,10 @@ export default defineConfig({
           path: '/my',
           component: '@/pages/my',
         },
+        {
+          path: `/spu/:spuId`,
+          component: '@/pages/spu',
+        },
       ],
     },
   ],
