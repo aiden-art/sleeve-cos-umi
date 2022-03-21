@@ -1,6 +1,5 @@
 import React from 'react';
 import { Swiper } from 'antd-mobile';
-import { history } from 'umi';
 import ImageWrapper from '@/components/ImageWrapper';
 
 interface CarouselPropsType {
@@ -10,7 +9,7 @@ interface CarouselPropsType {
 const Carousel: React.FC<CarouselPropsType> = (props) => {
   return (
     <Swiper
-      className="home-carousel__inner"
+      className="spu-page-carousel__inner"
       autoplay={true}
       loop
       indicatorProps={{

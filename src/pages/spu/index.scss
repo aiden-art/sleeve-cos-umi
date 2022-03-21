@@ -1,0 +1,79 @@
+.spu-page {
+  background-color: $page-background-color;
+  min-height: 100vh;
+  &-carousel {
+    height: 0px;
+    padding-top: 90.6%;
+    position: relative;
+    &__inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+  &-info {
+    padding: 12px 15px 12px 15px;
+    background-color: #fff;
+    &__title {
+      font-size: 16px;
+      color: #333;
+      line-height: 20px;
+    }
+    &__subtitle {
+      font-size: 14px;
+      color: #999;
+      line-height: 20px;
+      margin-top: 10px;
+    }
+    &__price-box {
+      margin-top: 10px;
+    }
+    &__price-prefix {
+      font-size: 18px;
+      color: $brand-color;
+    }
+    &__price {
+      font-size: 22px;
+      color: $brand-color;
+      line-height: 32px;
+    }
+  }
+  &-spec-box {
+    width: 100%;
+    margin-top: 10px;
+    height: 44px;
+    background-color: #fff;
+    padding: 0 15px;
+    color: #999;
+    font-size: 12px;
+    @include flex(row, space-between, center);
+    &__left {
+      flex: 1;
+      @include flex(row, null, center);
+    }
+    &__name {
+      color: $brand-color;
+    }
+  }
+  &-rules {
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #fff;
+    &__list {
+      border: 1px dashed $brand-color-light;
+      padding: 0 15px;
+    }
+    &__item {
+      font-size: 14px;
+      color: #333;
+      border-bottom: 1px solid $brand-color-light;
+      padding: 12px 0;
+    }
+  }
+  &-imgs {
+    &__item {
+      display: block;
+      max-width: 100%;
+    }
+  }
+}
