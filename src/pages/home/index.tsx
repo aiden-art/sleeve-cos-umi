@@ -69,6 +69,7 @@ const Home: React.FC = () => {
       const themeId = '8';
       const result = await getThemeDetailApi(themeId);
       setRandomRecommendThemeData(result.data);
+      setLoading(false);
     };
 
     fetchCarouselList();
@@ -79,9 +80,9 @@ const Home: React.FC = () => {
     fetchFashionThemeData();
     fetchRandomRecommendThemeData();
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 2000);
   }, []);
 
   const WeeklyThemeRender = () => (weeklyThemeData ? <WeeklyTheme theme={weeklyThemeData} /> : <div></div>);

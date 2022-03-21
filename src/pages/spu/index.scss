@@ -68,6 +68,9 @@
       color: #333;
       border-bottom: 1px solid $brand-color-light;
       padding: 12px 0;
+      &:last-child {
+        border: none;
+      }
     }
   }
   &-imgs {
