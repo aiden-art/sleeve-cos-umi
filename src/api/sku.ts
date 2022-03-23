@@ -1,7 +1,8 @@
 export interface SkuSpecModel {
-  key: string;
-  keyId: undefined | number;
-  valueId: undefined | number;
+  key: string; //规格名
+  keyId: number; //规格名对应ID
+  valueId: number; //规格值对应ID
+  value: string; //规格值
 }
 
 export interface SkuModel {
