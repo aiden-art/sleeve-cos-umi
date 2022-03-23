@@ -1,0 +1,4 @@
+.sku-fence {
+  @include flex(row);
+  flex-wrap: wrap;
+}

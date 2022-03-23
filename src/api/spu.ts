@@ -1,5 +1,6 @@
 import request from '@/utils/request';
 import { BaseListResponseType, BaseResponseModel, BaseResponseType } from './apiBaseTypes';
+import { SkuModel } from './sku';
 import { SpecKeyModel } from './spec';
 
 export interface SpuModel {
@@ -19,6 +20,7 @@ export interface SpuModel {
   spuImgs?: string[];
   spuDetailImgs?: string[];
   specKeys?: number[];
+  skus?: SkuModel[];
 }
 
 export type SpuSpecResponseType = {

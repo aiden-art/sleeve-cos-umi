@@ -6,6 +6,8 @@ import Carousel from './components/Carousel';
 import { RightOutline } from 'antd-mobile-icons';
 import { SpecKeyModel } from '@/api/spec';
 import FooterBar from './components/FooterBar';
+import SkuRealm from './components/SkuRealm';
+import { Popup } from 'antd-mobile';
 
 type routeParamsType = {
   spuId: string;
@@ -28,6 +30,8 @@ const Spu: React.FC = () => {
     spuThemeImg: '',
     forThemeImg: '',
   });
+  const [skuRealmVisible, setSkuRealmVisible] = useState(false);
+
   const [spuSpecList, setSpeSpecList] = useState<SpecKeyModel[]>([]);
 
   const spuSpecNameList = spuSpecList.map((spec) => spec.name);
@@ -69,6 +73,7 @@ const Spu: React.FC = () => {
         </div>
         <RightOutline fontSize="14" color="#157658" />
       </div>
+
       <div className="spu-page-rules">
         <ul className="spu-page-rules__list">
           <li className="spu-page-rules__item">演示：本商品为演示数据，不可支付</li>
@@ -83,7 +88,27 @@ const Spu: React.FC = () => {
         {spuData.spuDetailImgs &&
           spuData.spuDetailImgs.map((url) => <img className="spu-page-imgs__item" src={url} alt="" />)}
       </div>
-      <FooterBar />
+      <FooterBar
+        onAddCartClick={() => {
+          setSkuRealmVisible(true);
+        }}
+        onBuyClick={() => {
+          setSkuRealmVisible(true);
+        }}
+      />
+      {/* sku */}
+      <Popup
+        visible={skuRealmVisible}
+        position="bottom"
+        onMaskClick={() => {
+          setSkuRealmVisible(false);
+        }}
+        bodyStyle={{
+          minHeight: '50vh',
+        }}
+      >
+        <SkuRealm />
+      </Popup>
     </div>
   );
 };
