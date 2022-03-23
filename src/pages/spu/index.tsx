@@ -5,6 +5,7 @@ import { getSpuDetailApi, getSpuSpecApi, SpuModel } from '@/api/spu';
 import Carousel from './components/Carousel';
 import { RightOutline } from 'antd-mobile-icons';
 import { SpecKeyModel } from '@/api/spec';
+import FooterBar from './components/FooterBar';
 
 type routeParamsType = {
   spuId: string;
@@ -82,6 +83,7 @@ const Spu: React.FC = () => {
         {spuData.spuDetailImgs &&
           spuData.spuDetailImgs.map((url) => <img className="spu-page-imgs__item" src={url} alt="" />)}
       </div>
+      <FooterBar />
     </div>
   );
 };

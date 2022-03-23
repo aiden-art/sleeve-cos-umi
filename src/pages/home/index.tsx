@@ -79,10 +79,6 @@ const Home: React.FC = () => {
     fetchRankBannerData();
     fetchFashionThemeData();
     fetchRandomRecommendThemeData();
-
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 2000);
   }, []);
 
   const WeeklyThemeRender = () => (weeklyThemeData ? <WeeklyTheme theme={weeklyThemeData} /> : <div></div>);
