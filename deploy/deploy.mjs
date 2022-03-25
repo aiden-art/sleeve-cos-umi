@@ -4,7 +4,7 @@ try {
     const projectName = 'sleeve-cos'
 
     console.log('开始创建 docker 镜像')
-    await $`docker build . --network=host -t  ${projectName}-image:latest`
+    await $`docker build . --no-cache --network=host -t  ${projectName}-image:latest`
     console.log('创建 docker 镜像成功')
 
     console.log('开始销毁 docker 容器')
