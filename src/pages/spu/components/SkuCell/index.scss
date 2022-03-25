@@ -7,13 +7,13 @@
   margin-top: 10px;
   margin-right: 10px;
   @include flex(row, center, center);
-  &.disabled {
+  &.prohibit {
     border: 1px dashed #bbb;
     #{$root}__title {
       color: #bbb;
     }
   }
-  &.active {
+  &.selected {
     border: 1px solid $brand-color;
     #{$root}__inner {
       background-color: $brand-color;

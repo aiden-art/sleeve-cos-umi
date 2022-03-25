@@ -7,7 +7,6 @@ export interface SpuModel {
   id: number;
   title: string;
   subtitle: string;
-  online: number;
   price: string;
   sketchSpecId: number;
   defaultSkuId: number;

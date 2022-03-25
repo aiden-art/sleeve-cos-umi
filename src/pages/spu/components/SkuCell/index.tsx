@@ -1,5 +1,7 @@
 import React from 'react';
+import { SkuFenceInterface } from '../SkuFence/SkuFence';
 import './index.scss';
+import { SkuCellInterface } from './skuCell';
 
 export type CellType = {
   img: string;
@@ -8,21 +10,24 @@ export type CellType = {
 
 interface SkuCellPropsType {
   className?: string;
-  cell?: CellType;
-  x?: number;
-  y?: number;
+  cell: SkuCellInterface;
+  x: number;
+  y: number;
+  onCellClick: (cell: SkuCellInterface, x: number, y: number) => void;
 }
 
 const SkuCell: React.FC<SkuCellPropsType> = (props) => {
+  console.log('cell', props.cell);
   return (
-    <div className={`sku-cell ${props.className}`}>
+    <div
+      className={`sku-cell ${props.className} ${props.cell.status}`}
+      onClick={() => {
+        props.onCellClick(props.cell, props.x, props.y);
+      }}
+    >
       <div className="sku-cell__inner">
-        <img
-          className="sku-cell__img"
-          src="http://fx-go-upload.oss-cn-shanghai.aliyuncs.com/73284029-1c57-40b6-8a8d-0270e8a714a9.png"
-          alt=""
-        />
-        <p className="sku-cell__title">藏青色</p>
+        {props.cell?.img ? <img className="sku-cell__img" src={props.cell?.img} alt="" /> : ''}
+        <p className="sku-cell__title">{props.cell?.title}</p>
       </div>
     </div>
   );

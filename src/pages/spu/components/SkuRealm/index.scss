@@ -80,8 +80,16 @@
     height: 50px;
     text-align: center;
     line-height: 50px;
-    background: #333;
     color: #fff;
     font-size: 16px;
+    &.no-stock {
+      background-color: #dcebe6;
+    }
+    &.is-cart {
+      background: #333;
+    }
+    &.is-buy {
+      background-color: $brand-color;
+    }
   }
 }

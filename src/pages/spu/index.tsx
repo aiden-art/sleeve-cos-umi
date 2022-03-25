@@ -19,7 +19,6 @@ const Spu: React.FC = () => {
     id: 0,
     title: '',
     subtitle: '',
-    online: 0,
     price: '',
     sketchSpecId: 0,
     defaultSkuId: 0,
@@ -31,6 +30,8 @@ const Spu: React.FC = () => {
     forThemeImg: '',
   });
   const [skuRealmVisible, setSkuRealmVisible] = useState(false);
+
+  const [realmFlag, setRealmFlag] = useState('');
 
   const [spuSpecList, setSpeSpecList] = useState<SpecKeyModel[]>([]);
 
@@ -91,9 +92,11 @@ const Spu: React.FC = () => {
       <FooterBar
         onAddCartClick={() => {
           setSkuRealmVisible(true);
+          setRealmFlag('cartFlag');
         }}
         onBuyClick={() => {
           setSkuRealmVisible(true);
+          setRealmFlag('buyFlag');
         }}
       />
       {/* sku */}
@@ -107,7 +110,7 @@ const Spu: React.FC = () => {
           minHeight: '50vh',
         }}
       >
-        <SkuRealm />
+        <SkuRealm spu={spuData} flag={realmFlag} />
       </Popup>
     </div>
   );
