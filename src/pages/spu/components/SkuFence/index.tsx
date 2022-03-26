@@ -1,13 +1,13 @@
 import React from 'react';
 import './index.scss';
-import SkuCell, { CellType } from '../SkuCell';
-import { SkuCellInterface } from '../SkuCell/skuCell';
+import SkuCell from '../SkuCell';
+import SkuCellModel from '../SkuCell/skuCellModel';
 
 interface SkuFencePropsType {
   className?: string;
-  fenceData: SkuCellInterface[];
+  fenceData: SkuCellModel[];
   x: number;
-  onCellClick: (cell: SkuCellInterface, x: number, y: number) => void;
+  onCellClick: (cell: SkuCellModel, x: number, y: number) => void;
 }
 
 const SkuFence: React.FC<SkuFencePropsType> = ({ fenceData, x, onCellClick }) => {

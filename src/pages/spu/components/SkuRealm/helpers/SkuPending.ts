@@ -1,32 +1,20 @@
 import { SkuModel } from '@/api/sku';
-import SkuCell, { SkuCellInterface } from '../SkuCell/skuCell';
+import SkuCellModel from '../../SkuCell/skuCellModel';
 import SkuJoiner from './SkuJoiner';
 
-export interface SkuPendingInterface {
-  pending: SkuCellInterface[] | null[];
-  size: number;
-  findNoSelectedSpecIndex: () => number[];
-  getSkuCode: () => void;
-  getSkuSpecName: () => string;
-  addDefaultSku: (sku: SkuModel) => void;
-  removeCell: (index: number) => void;
-  insertCell: (cell: SkuCellInterface, index: number) => void;
-  isSelected: (cell: SkuCellInterface, x: number) => boolean;
-  findSelectedCellByIndex: (index: number) => SkuCellInterface | null;
-  intact: () => boolean;
-}
+//用于判断sku是否选择完成
 
-class SkuPending implements SkuPendingInterface {
+class SkuPending {
   /**
    * 承装用户已经选择的规格cell
    * @type {*[]}
    */
-  pending: SkuCellInterface[] | null[] = [];
+  pending: SkuCellModel[] | null[] = [];
 
   /**
-   * 当前skuPending需要承装的规格数量
+   * 当前skuPending需要承装的规格数量,对应的是skufence的数量，当pending均有值时代码选择完毕
    */
-  size;
+  size: number;
 
   constructor(size: number) {
     this.size = size;
@@ -35,7 +23,7 @@ class SkuPending implements SkuPendingInterface {
    * 将用户已选中的cell添加到pending[]中
    * @param cell
    */
-  insertCell(cell: SkuCellInterface, index: number) {
+  insertCell(cell: SkuCellModel, index: number) {
     this.pending[index] = cell;
   }
 
@@ -52,11 +40,11 @@ class SkuPending implements SkuPendingInterface {
    * @param index
    * @returns {*}
    */
-  findSelectedCellByIndex(index: number): SkuCellInterface | null {
+  findSelectedCellByIndex(index: number): SkuCellModel | null {
     return this.pending[index];
   }
 
-  isSelected(cell: SkuCellInterface, x: number) {
+  isSelected(cell: SkuCellModel, x: number) {
     let selectedCell = this.pending[x];
     if (!selectedCell) {
       return false;
@@ -70,7 +58,7 @@ class SkuPending implements SkuPendingInterface {
    */
   addDefaultSku(sku: SkuModel) {
     for (let i = 0; i < sku.specs.length; i++) {
-      let cell = new SkuCell(sku.specs[i]);
+      let cell = new SkuCellModel(sku.specs[i]);
 
       this.insertCell(cell, i);
     }
@@ -110,7 +98,6 @@ class SkuPending implements SkuPendingInterface {
     this.pending.forEach((cell) => {
       if (cell) {
         let code = cell.spec.keyId + '-' + cell.spec.valueId;
-        // console.log(code);
         joiner.join(code);
       }
     });

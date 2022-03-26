@@ -1,4 +1,5 @@
 // 用于生成sku的二维矩阵
+
 class Matrix<T> {
   /**
    * 当前对象持有的二维数组矩阵
@@ -15,7 +16,6 @@ class Matrix<T> {
    */
   getRowLength() {
     //如果当前商品无规格，那么this.matrix[0].length;会出现异常，需要特殊处理
-    // console.log(this.matrix[0].length);
     return this.matrix[0].length;
   }
 
@@ -24,7 +24,6 @@ class Matrix<T> {
    * @returns {*}
    */
   getColLength() {
-    // console.log(this.matrix.length);
     return this.matrix.length;
   }
 

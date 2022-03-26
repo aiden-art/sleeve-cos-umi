@@ -5,15 +5,15 @@ import { SpuModel } from '@/api/spu';
 import { SpecKeyModel } from '@/api/spec';
 import { SkuModel } from '@/api/sku';
 import SkuFence from '../SkuFence';
-import SkuRealmClass from './SkuRealmClass';
-import SkuJudger from './SkuJudger';
-import { SkuFenceInterface } from '../SkuFence/SkuFence';
-import { SkuCellInterface } from '../SkuCell/skuCell';
-import SkuJoiner from './SkuJoiner';
+import SkuFenceModel from '../SkuFence/SkuFenceModel';
+import SkuRealmClass from './SkuRealmModel';
+import SkuJudger from './helpers/SkuJudger';
+import SkuCellModel from '../SkuCell/skuCellModel';
+import SkuJoiner from './helpers/SkuJoiner';
 
 interface SkuRealmPropsType {
   spu?: SpuModel;
-  specList?: SpecKeyModel[];
+  specKeys: SpecKeyModel[];
   skuList?: SkuModel[];
   flag: string;
   onSpecNameChange: (intact: boolean, specName: string) => void;
@@ -26,69 +26,80 @@ interface SkuRealmInfoType {
   stock?: number;
 }
 
-const SkuRealm: React.FC<SkuRealmPropsType> = ({ spu, specList, flag, onSpecNameChange }) => {
+const SkuRealm: React.FC<SkuRealmPropsType> = ({ spu, specKeys, flag, onSpecNameChange }) => {
+  //展示的基本信息
   const [skuRealmInfo, setSkuRealmInfo] = useState<SkuRealmInfoType>({
     img: '',
     title: '',
     price: '',
   });
-  //未选择任何规格时提示选择规格值
+  //未选择规格值
   const [noSelectedName, setNoSelectedName] = useState('');
-  //已选择规格
+  //已选择规格值
   const [specName, setSpecName] = useState('');
   //数量
   const [count, setCount] = useState(0);
-  //规格是否选择完整
+  //规格是否选择完整，true表示选择完毕
   const [intact, setIntact] = useState(false);
   //库存是否充足,true表示充足
   const [whetherProductFlag, setWhetherProductFlag] = useState(true);
+  //用于sku选择过程的计算
   const [judger, setJudger] = useState<SkuJudger | null>(null);
-  const [skuFenceData, setSkuFenceData] = useState<SkuFenceInterface[]>([]);
+  //对应skufence组件的源数据
+  const [skuFenceData, setSkuFenceData] = useState<SkuFenceModel[]>([]);
+
   useEffect(() => {
     if (spu) {
-      let skuRealm = new SkuRealmClass(spu);
-      if (spu.skus) {
-        skuRealm.initFencesBytransPosition(spu.skus);
-        let judger = new SkuJudger(skuRealm);
-        setJudger(judger);
-        //如果有默认sku,那么需要在详情页显示默认sku，如果没有，那么需要显示spu信息
-        let defaultSku = skuRealm.getDefaultSku();
-        if (defaultSku) {
-          //显示sku
-          showDefaultSku(defaultSku);
-          //需要判断当前的sku库存是否大于0，如果等于0，那么将显示无货
-          if (defaultSku.stock > 0) {
-            setWhetherProductFlag(true);
-          }
-          let intact = judger.skuPending?.intact();
-          if (intact) {
-            let specName = judger.getSpecName();
-            setIntact(intact);
-            if (specName) {
-              setSpecName(specName);
+      //是否存在spec
+      let hasSpec = specKeys.length > 0;
+      if (hasSpec) {
+        let skuRealm = new SkuRealmClass(spu);
+        if (spu.skus) {
+          skuRealm.initFencesBytransPosition(spu.skus);
+          let judger = new SkuJudger(skuRealm);
+          setJudger(judger);
+          //如果有默认sku,那么需要在详情页显示默认sku，如果没有，那么需要显示spu信息
+          let defaultSku = skuRealm.getDefaultSku();
+          if (defaultSku) {
+            //显示sku
+            showDefaultSku(defaultSku);
+            //需要判断当前的sku库存是否大于0，如果等于0，那么将显示无货
+            if (defaultSku.stock > 0) {
+              setWhetherProductFlag(true);
+            }
+            let intact = judger.skuPending.intact();
+            if (intact) {
+              let specName = judger.getSpecName();
+              setIntact(intact);
+              if (specName) {
+                setSpecName(specName);
+                onSpecNameChange(intact, specName);
+              }
+            }
+          } else {
+            //如果没有默认sku，则显示spu
+            showSpu(spu);
+            //提示用户哪一个规格还没有选择
+            let noSelectedSpecName = judger.findNoSelectedSpec();
+            let joiner = new SkuJoiner(' ,');
+            if (noSelectedSpecName) {
+              noSelectedSpecName.forEach((name) => {
+                joiner.join(name);
+              });
+              let specName = joiner.getStr();
+              setNoSelectedName(specName);
               onSpecNameChange(intact, specName);
             }
           }
-        } else {
-          //如果没有默认sku，则显示spu
-          showSpu(spu);
-          //提示用户哪一个规格还没有选择
-          let noSelectedSpecName = judger?.findNoSelectedSpec();
-          let joiner = new SkuJoiner(' ,');
-          if (noSelectedSpecName) {
-            noSelectedSpecName.forEach((name) => {
-              joiner.join(name);
-            });
-            let specName = joiner.getStr();
-            setNoSelectedName(specName);
-            onSpecNameChange(intact, specName);
-          }
+          setSkuFenceData(judger.fenceGroup.fences);
         }
-        setSkuFenceData(judger.fenceGroup.fences);
+      } else {
+        showDefaultSku(spu.skus![0]);
       }
     }
   }, []);
 
+  //当未选择任何sku时展示spu信息
   const showSpu = (spu: SpuModel) => {
     setSkuRealmInfo({
       img: spu.img,
@@ -96,6 +107,8 @@ const SkuRealm: React.FC<SkuRealmPropsType> = ({ spu, specList, flag, onSpecName
       price: spu.price,
     });
   };
+
+  //当选择sku时展示sku对应信息
   const showDefaultSku = (sku: SkuModel) => {
     setSkuRealmInfo({
       img: sku.img,
@@ -105,10 +118,12 @@ const SkuRealm: React.FC<SkuRealmPropsType> = ({ spu, specList, flag, onSpecName
     });
   };
 
+  //购买数量是否超出sku库存
   const whetherOutofStock = (stock: number, currentCount: number) => {
     return stock >= currentCount;
   };
 
+  //购买数量监听事件
   const handleCountChange = (value: number | null) => {
     if (value) {
       setCount(value);
@@ -122,7 +137,7 @@ const SkuRealm: React.FC<SkuRealmPropsType> = ({ spu, specList, flag, onSpecName
     }
   };
 
-  const onCellClick = (cell: SkuCellInterface, x: number, y: number) => {
+  const onCellClick = (cell: SkuCellModel, x: number, y: number) => {
     if (judger) {
       judger.changeStatus(cell, x, y);
       let intact = judger.skuPending?.intact();
@@ -166,6 +181,7 @@ const SkuRealm: React.FC<SkuRealmPropsType> = ({ spu, specList, flag, onSpecName
       <div className="sku-realm__footer is-buy">立即购买</div>
     );
   };
+
   return (
     <div className="sku-realm">
       <div className="sku-info">

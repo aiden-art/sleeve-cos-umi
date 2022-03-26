@@ -1,5 +1,5 @@
 /**
- * js计算组合的方法
+ * js计算组合的方法,排列组合
  * @param arr 需要计算组合的数据集合
  * @param size 在所有的数据中，需要选取多少个进行组合 例如：C31,C32,三个里面选1个，三个里面选2个
  * @returns {[]}
@@ -59,7 +59,6 @@ class SkuCode {
       //将每次生成的数组，追加到codes[]中
       this.codes = this.codes.concat(segment);
       // console.log("单个sku组合后生成的数组");
-      // console.log(this.codes);
     }
   }
 }

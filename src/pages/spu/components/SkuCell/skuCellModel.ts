@@ -1,16 +1,7 @@
 import { SkuSpecModel } from '@/api/sku';
 import { SkuStatus } from '@/enum/skuStatus';
 
-export interface SkuCellInterface {
-  title: string;
-  id: number;
-  img?: string;
-  status: string;
-  spec: SkuSpecModel;
-  appendSkuCode: () => string;
-}
-
-class SkuCell implements SkuCellInterface {
+class SkuCellModel {
   //规格值
   title: string;
   //规格值ID
@@ -34,4 +25,4 @@ class SkuCell implements SkuCellInterface {
   }
 }
 
-export default SkuCell;
+export default SkuCellModel;

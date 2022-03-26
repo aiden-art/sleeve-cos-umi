@@ -3,24 +3,24 @@
  */
 import SkuCode from './SkuCode';
 import { SkuStatus } from '@/enum/skuStatus';
-import SkuPending, { SkuPendingInterface } from './SkuPending';
+import SkuPending from './SkuPending';
 import SkuJoiner from './SkuJoiner';
-import { SkuRealmClassInterface } from './SkuRealmClass';
-import { SkuCellInterface } from '../SkuCell/skuCell';
+import SkuRealmModel from '../SkuRealmModel';
+import SkuCellModel from '../../SkuCell/skuCellModel';
 import { SkuModel, SkuSpecModel } from '@/api/sku';
 
 class SkuJudger {
   /**
    * 存储当前商品所有数据
    */
-  fenceGroup: SkuRealmClassInterface;
+  fenceGroup: SkuRealmModel;
   /**
    * 存储当前商品所有sku组合生成的code路径
    * @type {*[]}
    */
   allSkuCodes: string[] = [];
 
-  skuPending: SkuPendingInterface | undefined;
+  skuPending: SkuPending = new SkuPending(0);
   /**
    * 用于存储规格名的数组
    * @type {*[]}
@@ -31,7 +31,7 @@ class SkuJudger {
    * 构造方法中，代码的顺序尤为需要注意，后面的代码可能需要前面代码产生的数据，不注意顺序可能会报错
    * @param fenceGroup
    */
-  constructor(fenceGroup: SkuRealmClassInterface) {
+  constructor(fenceGroup: SkuRealmModel) {
     this.fenceGroup = fenceGroup;
     this.createAllSkuCombinationPath();
     this._initSkuPending();
@@ -87,8 +87,7 @@ class SkuJudger {
   _initSkuPending() {
     this.skuPending = new SkuPending(this.fenceGroup.fences.length);
     let defaultSku = this.fenceGroup.getDefaultSku();
-    console.log('默认sku-->');
-    console.log(defaultSku);
+    console.log('默认sku-->', defaultSku);
     if (!defaultSku) {
       return;
     } else {
@@ -131,7 +130,7 @@ class SkuJudger {
    * @param x
    * @param y
    */
-  changeStatus(cell: SkuCellInterface | null, x: number | null, y: number | null, flag = false) {
+  changeStatus(cell: SkuCellModel | null, x: number | null, y: number | null, flag = false) {
     if (!flag) {
       this._changeCurrentCellStatus(cell!, x!, y!);
     }
@@ -160,7 +159,7 @@ class SkuJudger {
    * @param y 当前cell在二维数组的纵坐标
    * @private
    */
-  _changeOtherCellStatus(cell: SkuCellInterface, x: number, y: number) {
+  _changeOtherCellStatus(cell: SkuCellModel, x: number, y: number) {
     const path = this.findPotentialPath(cell, x, y);
     // console.log("计算出来的所有可能路径");
     // console.log(path);
@@ -171,7 +170,7 @@ class SkuJudger {
    * @param x 表示当前cell的横坐标
    * @param y 表示当前cell的纵坐标
    */
-  findPotentialPath(cell: SkuCellInterface, x: number, y: number) {
+  findPotentialPath(cell: SkuCellModel, x: number, y: number) {
     const joiner = new SkuJoiner('#');
     //遍历二维数组，提取出每一行规格-->颜色，型号，尺码
     if (this.skuPending) {
@@ -212,7 +211,7 @@ class SkuJudger {
    * @param cell
    * @private
    */
-  _changeCurrentCellStatus(cell: SkuCellInterface, x: number, y: number) {
+  _changeCurrentCellStatus(cell: SkuCellModel, x: number, y: number) {
     if (cell.status === SkuStatus.SELECTED) {
       this.fenceGroup.fences[x].cells[y].status = SkuStatus.WAITING;
       //执行反选，将当前cell数据从pending[]中删除掉
@@ -226,7 +225,6 @@ class SkuJudger {
       //执行正选操作，将cell数据添加到pending[]中
       if (this.skuPending) {
         this.skuPending.insertCell(cell, x);
-        console.log(this.skuPending.pending);
       }
     }
   }

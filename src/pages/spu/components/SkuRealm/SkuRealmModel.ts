@@ -1,23 +1,10 @@
 import { SkuModel, SkuSpecModel } from '@/api/sku';
 import { SpuModel } from '@/api/spu';
-import { SkuCellInterface } from '../SkuCell/skuCell';
-import SkuFence from '../SkuFence/SkuFence';
-import { SkuFenceInterface } from '../SkuFence/SkuFence';
-import Matrix from './Matrix';
+import SkuCellModel from '../SkuCell/skuCellModel';
+import SkuFence from '../SkuFence/SkuFenceModel';
+import Matrix from './helpers/Matrix';
 
-export interface SkuRealmClassInterface {
-  spuData: SpuModel;
-  skuList: SkuModel[];
-  fences: SkuFenceInterface[];
-  matrix: any;
-  getMatchSku: (skuCode: string) => SkuModel | undefined;
-  getSpuId: () => void;
-  setCellStatusById: (cellId: number, status: string) => void;
-  getDefaultSku: () => SkuModel | undefined;
-  eachCell: (callback: (cell: SkuCellInterface, i: number, j: number) => void) => void;
-}
-
-class SkuRealmClass implements SkuRealmClassInterface {
+class SkuRealmModel {
   //整体spu数据
   spuData: SpuModel = {
     id: 0,
@@ -33,9 +20,11 @@ class SkuRealmClass implements SkuRealmClassInterface {
     spuThemeImg: '',
     forThemeImg: '',
   };
+  //sku数据
   skuList: SkuModel[] = [];
-  fences: SkuFenceInterface[] = [];
-  matrix: any;
+  //同一规格名下规格值数组
+  fences: SkuFence[] = [];
+  matrix: Matrix<SkuSpecModel> | null = null;
   constructor(spuData: SpuModel) {
     this.spuData = spuData;
     if (spuData.skus) {
@@ -52,7 +41,7 @@ class SkuRealmClass implements SkuRealmClassInterface {
   }
 
   setCellStatusById(cellId: number, status: string) {
-    this.eachCell((cell: SkuCellInterface) => {
+    this.eachCell((cell: SkuCellModel) => {
       if (cellId === cell.id) {
         cell.status = status;
       }
@@ -96,7 +85,7 @@ class SkuRealmClass implements SkuRealmClassInterface {
    * 方法中解决，所以就需要传入一个函数来解决
    * @param callback
    */
-  eachCell(callback: (cell: SkuCellInterface, i: number, j: number) => void) {
+  eachCell(callback: (cell: SkuCellModel, i: number, j: number) => void) {
     for (let i = 0; i < this.fences.length; i++) {
       for (let j = 0; j < this.fences[i].cells.length; j++) {
         let cell = this.fences[i].cells[j];
@@ -106,7 +95,7 @@ class SkuRealmClass implements SkuRealmClassInterface {
     }
   }
 
-  eachCellForDefaultCell(cell: SkuCellInterface) {
+  eachCellForDefaultCell(cell: SkuCellModel) {
     let arr = [];
     for (let i = 0; i < this.fences.length; i++) {
       for (let j = 0; j < this.fences[i].cells.length; j++) {
@@ -136,17 +125,14 @@ class SkuRealmClass implements SkuRealmClassInterface {
       //判断当前fence是否为可视化规格
       if (fence.specId) {
         if (this.whetherHasVisualSpecifications() && this.whetherIsVisualSpecifications(fence.specId)) {
-          console.log('创建的fence数据=====》');
-          console.log(fence);
+          console.log('创建的fence数据=====》', fence);
           //将可视化规格图片存入cell中
           fence.addVisualSpecificationsToCell(this.skuList, fence.cells);
-          console.log(fence.cells);
         }
       }
       this.fences.push(fence);
     });
-    console.log('矩阵转置');
-    console.log(this.fences);
+    console.log('矩阵转置', this.fences);
   }
 
   /**
@@ -182,7 +168,6 @@ class SkuRealmClass implements SkuRealmClassInterface {
       }
       this.fences.push(fence);
     }
-    console.log(this.fences);
   }
   /**
    * 实例化fence对象
@@ -196,4 +181,4 @@ class SkuRealmClass implements SkuRealmClassInterface {
   }
 }
 
-export default SkuRealmClass;
+export default SkuRealmModel;

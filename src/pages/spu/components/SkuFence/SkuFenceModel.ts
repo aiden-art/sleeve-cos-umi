@@ -1,16 +1,8 @@
 import { SkuModel, SkuSpecModel } from '@/api/sku';
-import SkuCell, { SkuCellInterface } from '../SkuCell/skuCell';
+import SkuCellModel from '../SkuCell/skuCellModel';
 
-export interface SkuFenceInterface {
-  cells: SkuCellInterface[];
-  specId: number | undefined;
-  specName: string | undefined;
-  addSpecToFence: (specs: SkuSpecModel[]) => void;
-  addVisualSpecificationsToCell: (skuList: SkuModel[], cells: SkuCellInterface[]) => void;
-}
-
-class SkuFence implements SkuFenceInterface {
-  cells: SkuCellInterface[] = [];
+class SkuFenceModel {
+  cells: SkuCellModel[] = [];
   //当前行规格名ID
   specId;
   //当前行规格名
@@ -33,7 +25,7 @@ class SkuFence implements SkuFenceInterface {
         return spec.valueId === cell.id;
       });
       if (existed) return;
-      let cell = new SkuCell(spec);
+      let cell = new SkuCellModel(spec);
       this.cells.push(cell);
     });
   }
@@ -43,7 +35,7 @@ class SkuFence implements SkuFenceInterface {
    * @param skuList
    * @param cells
    */
-  addVisualSpecificationsToCell(skuList: SkuModel[], cells: SkuCellInterface[]) {
+  addVisualSpecificationsToCell(skuList: SkuModel[], cells: SkuCellModel[]) {
     cells.forEach((cell) => {
       const specCode = cell.appendSkuCode();
       skuList.forEach((sku) => {
@@ -61,9 +53,9 @@ class SkuFence implements SkuFenceInterface {
    * @returns {number}
    */
   addFenceTitleValue(element: SkuSpecModel) {
-    let cell = new SkuCell(element);
+    let cell = new SkuCellModel(element);
     return this.cells.push(cell);
   }
 }
 
-export default SkuFence;
+export default SkuFenceModel;

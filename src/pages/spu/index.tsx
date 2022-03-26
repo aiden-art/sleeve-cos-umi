@@ -7,6 +7,7 @@ import { RightOutline } from 'antd-mobile-icons';
 import FooterBar from './components/FooterBar';
 import SkuRealm from './components/SkuRealm';
 import { Popup } from 'antd-mobile';
+import { SpecKeyModel } from '@/api/spec';
 
 type routeParamsType = {
   spuId: string;
@@ -36,6 +37,8 @@ const Spu: React.FC = () => {
 
   const [specName, setSpecName] = useState('');
 
+  const [specKeys, setSpecKeys] = useState<SpecKeyModel[]>([]);
+
   const CarouselRender = () => (spuData?.spuImgs ? <Carousel carouselList={spuData.spuImgs} /> : <div></div>);
 
   const onSpecNameChange = (intact: boolean, specName: string) => {
@@ -52,6 +55,7 @@ const Spu: React.FC = () => {
     const fetchSpuSpec = async () => {
       const result = await getSpuSpecApi(params.spuId);
       const specKeys = result.data.specKeys;
+      setSpecKeys(specKeys);
       const specName = specKeys.map((e) => e.name).join(' ,');
       setSpecName(specName);
     };
@@ -73,31 +77,34 @@ const Spu: React.FC = () => {
           <span className="spu-page-info__price">{spuData.price}</span>
         </p>
       </div>
-      <div className="spu-page-spec-box">
-        {intact ? (
-          <div
-            className="spu-page-spec-box__left"
-            onClick={() => {
-              setSkuRealmVisible(true);
-            }}
-          >
-            <p>已选：</p>
-            <p className="spu-page-spec-box__name">{specName}</p>
-          </div>
-        ) : (
-          <div
-            className="spu-page-spec-box__left"
-            onClick={() => {
-              setSkuRealmVisible(true);
-            }}
-          >
-            <p>请选择：</p>
-            <p className="spu-page-spec-box__name">{specName}</p>
-          </div>
-        )}
-
-        <RightOutline fontSize="14" color="#157658" />
-      </div>
+      {specKeys.length > 0 ? (
+        <div className="spu-page-spec-box">
+          {intact ? (
+            <div
+              className="spu-page-spec-box__left"
+              onClick={() => {
+                setSkuRealmVisible(true);
+              }}
+            >
+              <p>已选：</p>
+              <p className="spu-page-spec-box__name">{specName}</p>
+            </div>
+          ) : (
+            <div
+              className="spu-page-spec-box__left"
+              onClick={() => {
+                setSkuRealmVisible(true);
+              }}
+            >
+              <p>请选择：</p>
+              <p className="spu-page-spec-box__name">{specName}</p>
+            </div>
+          )}
+          <RightOutline fontSize="14" color="#157658" />
+        </div>
+      ) : (
+        ''
+      )}
 
       <div className="spu-page-rules">
         <ul className="spu-page-rules__list">
@@ -111,7 +118,9 @@ const Spu: React.FC = () => {
       </div>
       <div className="spu-page-imgs">
         {spuData.spuDetailImgs &&
-          spuData.spuDetailImgs.map((url) => <img className="spu-page-imgs__item" src={url} alt="" />)}
+          spuData.spuDetailImgs.map((url, index) => (
+            <img key={index} className="spu-page-imgs__item" src={url} alt="" />
+          ))}
       </div>
       <FooterBar
         onAddCartClick={() => {
@@ -134,7 +143,7 @@ const Spu: React.FC = () => {
           minHeight: '50vh',
         }}
       >
-        <SkuRealm spu={spuData} flag={realmFlag} onSpecNameChange={onSpecNameChange} />
+        <SkuRealm spu={spuData} specKeys={specKeys} flag={realmFlag} onSpecNameChange={onSpecNameChange} />
       </Popup>
     </div>
   );
