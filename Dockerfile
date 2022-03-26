@@ -2,8 +2,6 @@
 # build stage
 FROM node:lts-alpine as build-stage
 
-ENV NODE_OPTIONS="–max_old_space_size=4096"
-
 # make directory
 RUN mkdir -p /app
 RUN chmod -R 777 /app
