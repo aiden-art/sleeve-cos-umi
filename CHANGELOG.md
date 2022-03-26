@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/theShapeOfvoice/fengxiu-cos-umi/compare/v0.0.7...v0.1.0) (2022-03-26)
+
+
+### Features
+
+* add nav bar ([29816e1](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/29816e1a38728d973ba5de07a200c6914c4ff0a3))
+* compelete home page ([0ecc5f6](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/0ecc5f62dfcae19f7fc876088a1015ae7b4bd861))
+* develop sku select logic ([66cd369](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/66cd369a5f093b08bab551efcffdd090b3de98f7))
+* develop spu detail page ([4cdbfe3](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/4cdbfe3b256da6514576abdf3bf99884bca9d452))
+* develop spu page ([5db953f](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/5db953f4aa316bc23707d217030ef39eaeb24323))
+* home add grid category ([a4e322a](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/a4e322acbf9bd5c3d91f0c7cb35ed51edd665a23))
+* pref home page ([dc66fbd](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/dc66fbdfb10a1774e7f5b661ff4d499d3bec0492))
+* sku code beauty ([a7b3922](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/a7b3922c07a153ced9958c139887ece4ea6a5be0))
+* sku select ([d753f62](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/d753f6295baeed4bd61455532b9f4c3a045288fb))
+* sku select feature ([dd47480](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/dd474804617c85c51f3df55d954c6e3f5dde7c9a))
+* sleeve home page ([2a4d762](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/2a4d762fb72ff8b1ad0cb7b884cec84dfab097f4))
+* spu add footer bar ([95a9d1f](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/95a9d1f3998a1331896ad60e72384332d9e01692))
+* spu sku perf ([629e791](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/629e7917dbe6c68a818c1042c0dca795f63c8712))
+
+
+### Bug Fixes
+
+* build failed ([4a0946b](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/4a0946b8f09772bd51e2b7ed5be5d02bb1c0cb0e))
+* change title img url ([92b26e6](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/92b26e67390a5a2fd5082b15d5a8ab47dd331a22))
+* docker build error issue ([5c0bec2](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/5c0bec2090f578546a691cd7485e7ac80de18f92))
+* fix build failed ([dac32e4](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/dac32e47bb9cb75789da3527e56096a7e95f2d6f))
+* fix build failed ([250039b](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/250039b2124928ba0f99b8a3100ff587107c8d99))
+* fix build failed ([8c9c3f9](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/8c9c3f9de10aac07f7262e50c4eb46a4b331e59d))
+* fix build failed ([72be82e](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/72be82e04f82d1a3e2b496656c91b5130af2a553))
+* fix build failed ([eb85937](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/eb85937cc866dc77b5b5a9cde5ade7ecb9999865))
+* fix build failed ([cf35ad6](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/cf35ad633c6d1eb1b856981c2cb64b964e72a08c))
+* fix jenkins build issue ([531be71](https://github.com/theShapeOfvoice/fengxiu-cos-umi/commit/531be71549025a3d3d07c103089547b0e3d98815))
+
 ### [0.0.7](https://github.com/theShapeOfvoice/fengxiu-cos-umi/compare/v0.0.6...v0.0.7) (2022-03-18)
 
 
