@@ -4,7 +4,6 @@ import { useParams } from 'umi';
 import { getSpuDetailApi, getSpuSpecApi, SpuModel } from '@/api/spu';
 import Carousel from './components/Carousel';
 import { RightOutline } from 'antd-mobile-icons';
-import { SpecKeyModel } from '@/api/spec';
 import FooterBar from './components/FooterBar';
 import SkuRealm from './components/SkuRealm';
 import { Popup } from 'antd-mobile';
@@ -33,11 +32,16 @@ const Spu: React.FC = () => {
 
   const [realmFlag, setRealmFlag] = useState('');
 
-  const [spuSpecList, setSpeSpecList] = useState<SpecKeyModel[]>([]);
+  const [intact, setIntact] = useState(false);
 
-  const spuSpecNameList = spuSpecList.map((spec) => spec.name);
+  const [specName, setSpecName] = useState('');
 
   const CarouselRender = () => (spuData?.spuImgs ? <Carousel carouselList={spuData.spuImgs} /> : <div></div>);
+
+  const onSpecNameChange = (intact: boolean, specName: string) => {
+    setIntact(intact);
+    setSpecName(specName);
+  };
 
   useEffect(() => {
     const fetchSpuDetail = async () => {
@@ -47,7 +51,9 @@ const Spu: React.FC = () => {
 
     const fetchSpuSpec = async () => {
       const result = await getSpuSpecApi(params.spuId);
-      setSpeSpecList(result.data.specKeys);
+      const specKeys = result.data.specKeys;
+      const specName = specKeys.map((e) => e.name).join(' ,');
+      setSpecName(specName);
     };
 
     fetchSpuDetail();
@@ -68,10 +74,28 @@ const Spu: React.FC = () => {
         </p>
       </div>
       <div className="spu-page-spec-box">
-        <div className="spu-page-spec-box__left">
-          <p>请选择：</p>
-          <p className="spu-page-spec-box__name">{spuSpecNameList.join(', ')}</p>
-        </div>
+        {intact ? (
+          <div
+            className="spu-page-spec-box__left"
+            onClick={() => {
+              setSkuRealmVisible(true);
+            }}
+          >
+            <p>已选：</p>
+            <p className="spu-page-spec-box__name">{specName}</p>
+          </div>
+        ) : (
+          <div
+            className="spu-page-spec-box__left"
+            onClick={() => {
+              setSkuRealmVisible(true);
+            }}
+          >
+            <p>请选择：</p>
+            <p className="spu-page-spec-box__name">{specName}</p>
+          </div>
+        )}
+
         <RightOutline fontSize="14" color="#157658" />
       </div>
 
@@ -110,7 +134,7 @@ const Spu: React.FC = () => {
           minHeight: '50vh',
         }}
       >
-        <SkuRealm spu={spuData} flag={realmFlag} />
+        <SkuRealm spu={spuData} flag={realmFlag} onSpecNameChange={onSpecNameChange} />
       </Popup>
     </div>
   );

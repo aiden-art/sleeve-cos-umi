@@ -1,7 +1,8 @@
 .spu-page {
   background-color: $page-background-color;
   min-height: 100vh;
-  padding-bottom: 50px;
+  padding-bottom: 80px;
+  overflow: scroll;
   &-carousel {
     height: 0px;
     padding-top: 90.6%;

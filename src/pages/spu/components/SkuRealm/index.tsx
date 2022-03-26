@@ -16,6 +16,7 @@ interface SkuRealmPropsType {
   specList?: SpecKeyModel[];
   skuList?: SkuModel[];
   flag: string;
+  onSpecNameChange: (intact: boolean, specName: string) => void;
 }
 
 interface SkuRealmInfoType {
@@ -25,7 +26,7 @@ interface SkuRealmInfoType {
   stock?: number;
 }
 
-const SkuRealm: React.FC<SkuRealmPropsType> = ({ spu, specList, flag }) => {
+const SkuRealm: React.FC<SkuRealmPropsType> = ({ spu, specList, flag, onSpecNameChange }) => {
   const [skuRealmInfo, setSkuRealmInfo] = useState<SkuRealmInfoType>({
     img: '',
     title: '',
@@ -65,6 +66,7 @@ const SkuRealm: React.FC<SkuRealmPropsType> = ({ spu, specList, flag }) => {
             setIntact(intact);
             if (specName) {
               setSpecName(specName);
+              onSpecNameChange(intact, specName);
             }
           }
         } else {
@@ -79,6 +81,7 @@ const SkuRealm: React.FC<SkuRealmPropsType> = ({ spu, specList, flag }) => {
             });
             let specName = joiner.getStr();
             setNoSelectedName(specName);
+            onSpecNameChange(intact, specName);
           }
         }
         setSkuFenceData(judger.fenceGroup.fences);
@@ -133,6 +136,7 @@ const SkuRealm: React.FC<SkuRealmPropsType> = ({ spu, specList, flag }) => {
           let flag = whetherOutofStock(matchSku.stock, count);
           if (specName) {
             setSpecName(specName);
+            onSpecNameChange(intact, specName);
           }
           setNoSelectedName('');
           setWhetherProductFlag(flag);
@@ -147,6 +151,7 @@ const SkuRealm: React.FC<SkuRealmPropsType> = ({ spu, specList, flag }) => {
           });
           let noSelectedSpec = joiner.getStr();
           setNoSelectedName(noSelectedSpec);
+          onSpecNameChange(intact!, noSelectedSpec);
         }
       }
       setSkuFenceData(judger.fenceGroup.fences.slice());
@@ -203,14 +208,7 @@ const SkuRealm: React.FC<SkuRealmPropsType> = ({ spu, specList, flag }) => {
       </div>
       <div className="sku-realm__step">
         <p className="sku-realm__label">购物数量</p>
-        <Stepper
-          style={{
-            '--button-text-color': '#157658',
-          }}
-          inputReadOnly={true}
-          value={count}
-          onChange={handleCountChange}
-        />
+        <Stepper inputReadOnly={true} value={count} onChange={handleCountChange} />
       </div>
       {whetherProductFlag ? <FooterButton /> : <div className="sku-realm__footer no-stock">暂时无货</div>}
     </div>
