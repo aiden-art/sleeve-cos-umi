@@ -2,6 +2,7 @@
 # build stage
 FROM node:lts-alpine as build-stage
 WORKDIR /app
+RUN chmod -R 777 /app
 COPY package*.json ./
 RUN rm -rf node_modulesa
 RUN npm config set registry https://registry.npmmirror.com/
