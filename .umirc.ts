@@ -1,9 +1,13 @@
 import { defineConfig } from 'umi';
 
+const FAVICON_URL = 'https://fx-go-upload.oss-cn-shanghai.aliyuncs.com/favicon.ico';
+
 export default defineConfig({
   define: {
     API_PREFIX: ' https://sleeve.api.vowui.com/api',
   },
+  favicon: FAVICON_URL,
+  title: 'sleeve-cos',
   devServer: {
     port: 8888,
   },
