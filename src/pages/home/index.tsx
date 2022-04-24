@@ -105,8 +105,8 @@ const Home: React.FC = () => {
   const HomePage = () => {
     return (
       <div className="home">
-        <a href="tapbooster://booster/to?url=http%3A%2F%2F192.168.3.48%3A3000%2Faccelerated-experience-card%3Ftab%3Dnormal">
-          跳转加速器页面
+        <a href="tapbooster://booster/to?url=http%3A%2F%2Fzgf.dev.taptap.com%3A3000%2Faccelerated-experience-card%3Ftab%3Dnormal">
+          <h3>跳转加速器页面</h3>
         </a>
         <ImageWrapper
           className="home-top-banner"
