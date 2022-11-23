@@ -27,7 +27,7 @@ jobs:
       run: |
         docker login --username=${{ secrets.DOCKER_USERNAME }} registry.cn-hangzhou.aliyuncs.com --password=${{ secrets.DOCKER_PASSWORD }}
         docker build -t sleeve-cos:latest .
-        docker tag shapeofvoice registry.cn-hangzhou.aliyuncs.com/sleeve/sleeve-cos:latest
+        docker tag sleeve-cos registry.cn-hangzhou.aliyuncs.com/sleeve/sleeve-cos:latest
         docker push registry.cn-hangzhou.aliyuncs.com/sleeve/sleeve-cos:latest
     # 使用appleboy/ssh-action@master登录服务器执行拉取镜像脚本
     - name: ssh docker login
