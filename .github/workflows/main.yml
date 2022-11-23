@@ -21,7 +21,7 @@ jobs:
       run: yarn
     # 打包
     - name: Build project
-      run: yarn run buildbuild:
+      run: yarn run build
     # 打包镜像推送到阿里云容器镜像服务
     - name: Build docker image
       run: |
