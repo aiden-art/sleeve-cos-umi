@@ -1,4 +1,4 @@
-name: Sleeve COS CI # Actions名称
+name: sleeve-cos ci # Actions名称
 on:
   # 触发workflow的动作形式 - 手动触发
   workflow_dispatch:
@@ -14,23 +14,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     # 下载源码
-    - name: checkout
+    - name: Checkout source code
       uses: actions/checkout@main
     # 安装依赖
-    - name: install
+    - name: Install packages
       run: yarn
     # 打包
-    - name: build project
-      run: yarn run build
+    - name: Build project
+      run: yarn run buildbuild:
     # 打包镜像推送到阿里云容器镜像服务
-    - name: Build the Docker image
+    - name: Build docker image
       run: |
         docker login --username=${{ secrets.DOCKER_USERNAME }} registry.cn-hangzhou.aliyuncs.com --password=${{ secrets.DOCKER_PASSWORD }}
         docker build -t sleeve-cos:latest .
         docker tag sleeve-cos registry.cn-hangzhou.aliyuncs.com/sleeve/sleeve-cos:latest
         docker push registry.cn-hangzhou.aliyuncs.com/sleeve/sleeve-cos:latest
     # 使用appleboy/ssh-action@master登录服务器执行拉取镜像脚本
-    - name: ssh docker login
+    - name: Deploy
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SSH_HOST }}
